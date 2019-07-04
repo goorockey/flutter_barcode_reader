@@ -42,8 +42,13 @@
                              views:@{@"scanRect": _scanRect}]];
   [_scanRect startAnimating];
     self.scanner = [[MTBBarcodeScanner alloc] initWithPreviewView:_previewView];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
-  [self updateFlashButton];
+    UIButton *back = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 34, 58)];
+    [back setImage:[UIImage imageNamed:@"back_left"] forState:UIControlStateNormal];
+    [back addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView: back];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+//  [self updateFlashButton];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
