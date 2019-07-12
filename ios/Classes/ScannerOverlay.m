@@ -85,8 +85,8 @@
   - (CGRect)scanRect {
     CGRect rect = self.frame;
     CGFloat heightMultiplier = 3.0/4.0; // 4:3 aspect ratio
-    CGFloat scanRectWidth = rect.size.width * 0.8f;
-    CGFloat scanRectHeight = scanRectWidth * heightMultiplier;
+    CGFloat scanRectWidth = rect.size.width * 0.7f;
+    CGFloat scanRectHeight = scanRectWidth;
     CGFloat scanRectOriginX = (rect.size.width / 2) - (scanRectWidth / 2);
     CGFloat scanRectOriginY = (rect.size.height / 2) - (scanRectHeight / 2);
     return CGRectMake(scanRectOriginX, scanRectOriginY, scanRectWidth, scanRectHeight);

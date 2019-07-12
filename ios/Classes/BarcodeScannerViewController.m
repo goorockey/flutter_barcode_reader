@@ -60,8 +60,32 @@
         if (success) {
             [self startScan];
         } else {
-          [self.delegate barcodeScannerViewController:self didFailWithErrorCode:@"PERMISSION_NOT_GRANTED"];
-          [self dismissViewControllerAnimated:NO completion:nil];
+//          [self.delegate barcodeScannerViewController:self didFailWithErrorCode:@"PERMISSION_NOT_GRANTED"];
+//          [self dismissViewControllerAnimated:NO completion:nil];
+            
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"" message:@"需要授权摄像头权限" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                [self dismissViewControllerAnimated:NO completion:nil];
+            }];
+            UIAlertAction *enter = [UIAlertAction actionWithTitle:@"点击授权" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                UIApplication *application = [UIApplication sharedApplication];
+                NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                if ([application canOpenURL:url]) {
+                    if ([application respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+                        if (@available(iOS 10.0, *)) {
+                            [application openURL:url options:@{} completionHandler:nil];
+                        } else {
+                            // Fallback on earlier versions
+                        }
+                    } else {
+                        [application openURL:url];
+                    }
+                }
+                [self dismissViewControllerAnimated:NO completion:nil];
+            }];
+            [alert addAction:cancel];
+            [alert addAction:enter];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
 }
