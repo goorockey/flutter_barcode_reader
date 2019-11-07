@@ -111,6 +111,7 @@
 }
 
 - (void)cancel {
+    [self.delegate dismissViewController];
     [self dismissViewControllerAnimated:true completion:nil];
 }
 

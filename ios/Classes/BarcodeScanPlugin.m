@@ -40,4 +40,11 @@
     }
 }
 
+- (void)dismissViewController {
+    if (self.result){
+          self.result([FlutterError errorWithCode:@""
+          message:nil
+          details:nil]);
+      }
+}
 @end

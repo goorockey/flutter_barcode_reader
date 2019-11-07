@@ -11,4 +11,6 @@
 - (void)barcodeScannerViewController:(BarcodeScannerViewController *)controller didScanBarcodeWithResult:(NSString *)result;
 - (void)barcodeScannerViewController:(BarcodeScannerViewController *)controller didFailWithErrorCode:(NSString *)errorCode;
 
+- (void)dismissViewController;
+
 @end
